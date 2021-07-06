@@ -10,28 +10,29 @@ export class AuthorService {
     description:'',
     imageUrl:''}
   constructor( private http:HttpClient) { }
+  server_address:string = '/api';
   getAuthor(id:any){
-    return this.http.get("http://localhost:3000/authors/"+id);
+    return this.http.get(`${this.server_address}/authors/` +id);
   }
   getAuthors(){
-    return this.http.get("http://localhost:3000/authors");
+    return this.http.get(`${this.server_address}/authors`);
   }
 
   newAuthor(item:any)
   {   
-    return this.http.post("http://localhost:3000/authors/insert",{"author":item})
+    return this.http.post(`${this.server_address}/authors/insert`,{"author":item})
     .subscribe(data =>{console.log(data)})
   }
   deleteAuthor(id:any)
   {
 
-    return this.http.delete("http://localhost:3000/authors/remove/"+id)
+    return this.http.delete(`${this.server_address}/authors/remove/` +id)
 
   }
   editAuthor(author:any)
   {
     console.log('client update')
-    return this.http.put("http://localhost:3000/authors/updateauthor",author)
+    return this.http.put(`${this.server_address}/authors/updateauthor`,author)
     .subscribe(data =>{console.log(data)})
   }
 }

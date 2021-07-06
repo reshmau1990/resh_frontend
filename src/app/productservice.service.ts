@@ -12,29 +12,29 @@ export class ProductService {
     description:'',
     imageUrl:''}
   constructor( private http:HttpClient) { }
-  
+  server_address:string = '/api';
   getBook(id:any){
-    return this.http.get("http://localhost:3000/books/"+id);
+    return this.http.get(`${this.server_address}/books/` +id);
   }
   getBooks(){
-    return this.http.get("http://localhost:3000/books");
+    return this.http.get(`${this.server_address}/books`);
   }
 
   newProduct(item:any)
   {   
-    return this.http.post("http://localhost:3000/books/insert",{"book":item})
+    return this.http.post(`${this.server_address}/books/insert`,{"book":item})
     .subscribe(data =>{console.log(data)})
   }
   deleteBook(id:any)
   {
 
-    return this.http.delete("http://localhost:3000/books/remove/"+id)
+    return this.http.delete(`${this.server_address}/books/remove/` +id)
 
   }
   editBook(book:any)
   {
     console.log('client update')
-    return this.http.put("http://localhost:3000/books/update",book)
+    return this.http.put(`${this.server_address}/books/update`,book)
     .subscribe(data =>{console.log(data)})
   }
 }
